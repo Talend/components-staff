@@ -9,4 +9,9 @@ Then as part of the final step after all records have been processed it will iss
 * Dynamic Table Creation: If selected this component will utilize the fields mapped into the Output Component to create
 a table in the target based on those field(s) names and data types.
 
-
+### [ThoughtSpot](https://github.com/tcgibennett/thoughtspot-component) ###
+The ThoughtSpot component allows the user to bulk write data into the ThoughtSpot appliance. This is done via
+ssh as JDBC connectivity into ThoughtSpot can be extremely slow. 
+* Bulk Load
+* Dynamically Create Target Table
+* Truncate Target Table before Load 
