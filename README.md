@@ -15,3 +15,9 @@ ssh as JDBC connectivity into ThoughtSpot can be extremely slow.
 * Bulk Load
 * Dynamically Create Target Table
 * Truncate Target Table before Load 
+
+### [Data Generator](https://github.com/tgourdel/datagenerator-component) ###
+The Data Generator component allows the user to bgenerate random and mock data for tests or demo purposes. The java-faker library is used underneath. Examples of some fields avalable
+* Full Name
+* City
+* Current Date
