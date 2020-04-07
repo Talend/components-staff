@@ -67,6 +67,8 @@ public enum Types{
     FILEEXTENSION,
     COLORNAME,
     COLORHEX,
+    CURRENCYCODE,
+    CURRENCYNAME,
     FREETEXT;
 
 }
