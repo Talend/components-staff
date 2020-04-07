@@ -43,7 +43,7 @@ public class FieldConfiguration implements Serializable {
     @Required
     @Documentation("Length")
     @DefaultValue("6")
-    @ActiveIf(target = "type", value = {} )
+    @ActiveIf(target = "type", value = {"RANDOMINT"} )
     private Integer length = 6;
 
     @Option
@@ -57,7 +57,7 @@ public class FieldConfiguration implements Serializable {
     @Required
     @Documentation("Max")
     @DefaultValue("100")
-    @ActiveIf(target = "type", value = {"AGE", "PASSWORD", "RANDOMSTRING", "RANDOMINTBETWEEN", "RANDOMINT"})
+    @ActiveIf(target = "type", value = {"AGE", "PASSWORD", "RANDOMSTRING", "RANDOMINTBETWEEN"})
     private Integer max = 100;
 
     @Option

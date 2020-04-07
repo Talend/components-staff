@@ -4,6 +4,8 @@ import com.datagenerator.talend.components.dataset.FieldConfiguration;
 import com.github.javafaker.Faker;
 import org.talend.sdk.component.api.record.Record;
 import org.talend.sdk.component.api.service.Service;
+
+import java.time.ZoneId;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,7 +15,6 @@ public class DataGeneratorComponentService {
 
     public Record.Builder addFieldsToRecord(Integer iterator,
                                             Faker fake, List<FieldConfiguration> fields, Record.Builder b) {
-
         Date date = new Date();
 
         // For each field select we add a value to the record
@@ -136,7 +137,7 @@ public class DataGeneratorComponentService {
                         b.withBoolean(field.getName(), fake.bool().bool());
                         break;
                     case RANDOMINT:
-                        b.withInt(field.getName(), (int) fake.number().randomNumber(field.getLength(), true));
+                        b.withInt(field.getName(), (int) fake.number().randomNumber(field.getLength(), false));
                         break;
                     case INCREMENTALINT:
                         b.withInt(field.getName(), (iterator * field.getIncrement()) + field.getMin());
@@ -209,6 +210,11 @@ public class DataGeneratorComponentService {
                     case COLORHEX:
                         b.withString(field.getName(), fake.color().hex());
                         break;
+                    case CURRENCYCODE:
+                        b.withString(field.getName(), fake.currency().code());
+                        break;
+                    case CURRENCYNAME:
+                        b.withString(field.getName(), fake.currency().name());
                     default:  b.withString(field.getName(),"error: field type not found");
                 }
         }
