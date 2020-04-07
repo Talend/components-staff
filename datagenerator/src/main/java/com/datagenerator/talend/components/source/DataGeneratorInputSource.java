@@ -1,6 +1,7 @@
 package com.datagenerator.talend.components.source;
 
 import java.io.Serializable;
+import java.time.ZoneId;
 import java.util.*;
 
 import javax.annotation.PostConstruct;
@@ -8,6 +9,7 @@ import javax.annotation.PreDestroy;
 
 import com.datagenerator.talend.components.DataGeneratorRuntimeException;
 import com.datagenerator.talend.components.dataset.FieldConfiguration;
+import com.datagenerator.talend.components.service.TimeZones;
 import com.github.javafaker.Faker;
 import lombok.extern.slf4j.Slf4j;
 import org.talend.sdk.component.api.configuration.Option;
@@ -28,6 +30,7 @@ public class DataGeneratorInputSource implements Serializable {
     private List<Faker> fakers;
     private Long rows;
     private Long seed;
+    private ZoneId zone;
     private List<String> locales;
     private Integer iteration;
 
@@ -53,6 +56,12 @@ public class DataGeneratorInputSource implements Serializable {
         }
         iteration = 0;
         fakers = new ArrayList<Faker>();
+        if(configuration.getDataset().getZone() == TimeZones.DEFAULT) {
+            zone = ZoneId.systemDefault();
+        } else {
+            zone = ZoneId.of(configuration.getDataset().getZone().getName());
+        }
+
         log.info("===== fakers: " + fakers.toString());
 
         // safeguards
@@ -99,7 +108,7 @@ public class DataGeneratorInputSource implements Serializable {
 
         // create Record Builder instance
         Record.Builder b = builderFactory.newRecordBuilder();
-        b = service.addFieldsToRecord(iteration, selected_faker, fields, b);
+        b = service.addFieldsToRecord(iteration, selected_faker, fields, zone, b);
 
         // increment iteration
         iteration++;

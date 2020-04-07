@@ -5,7 +5,9 @@ import com.github.javafaker.Faker;
 import org.talend.sdk.component.api.record.Record;
 import org.talend.sdk.component.api.service.Service;
 
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,8 +16,11 @@ import java.util.regex.Pattern;
 public class DataGeneratorComponentService {
 
     public Record.Builder addFieldsToRecord(Integer iterator,
-                                            Faker fake, List<FieldConfiguration> fields, Record.Builder b) {
-        Date date = new Date();
+                                            Faker fake, List<FieldConfiguration> fields,
+                                            ZoneId id, Record.Builder b) {
+
+        LocalDateTime now = LocalDateTime.now();
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(now, id);
 
         // For each field select we add a value to the record
         for (FieldConfiguration field : fields) {
@@ -54,8 +59,11 @@ public class DataGeneratorComponentService {
                     case DATEOFBIRTH:
                         b.withDateTime(field.getName(), fake.date().birthday());
                         break;
-                    case TELEPHONENUMBER:
+                    case PHONENUMBER:
                         b.withString(field.getName(), fake.phoneNumber().phoneNumber());
+                        break;
+                    case CELLPHONE:
+                        b.withString(field.getName(), fake.phoneNumber().cellPhone());
                         break;
                     case NATIONALITY:
                         b.withString(field.getName(), fake.country().name());
@@ -147,10 +155,10 @@ public class DataGeneratorComponentService {
                         break;
                     // Dates
                     case CURRENTDATETIME:
-                        b.withDateTime(field.getName(), date);
+                        b.withDateTime(field.getName(), zonedDateTime);
                         break;
                     case CURRENTTIMESTAMP:
-                        b.withLong(field.getName(), date.getTime());
+                        b.withLong(field.getName(), zonedDateTime.toEpochSecond());
                         break;
                     case RANDOMDATEBETWEEN:
                         b.withDateTime(field.getName(), fake.date().between(java.sql.Date.valueOf(field.getStartTime()), java.sql.Date.valueOf(field.getEndTime())));
