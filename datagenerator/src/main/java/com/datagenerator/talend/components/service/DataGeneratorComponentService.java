@@ -74,11 +74,20 @@ public class DataGeneratorComponentService {
                     case CITY:
                         b.withString(field.getName(), fake.address().city());
                         break;
+                    case STATE:
+                        b.withString(field.getName(), fake.address().state());
+                        break;
+                    case STATEABBR:
+                        b.withString(field.getName(), fake.address().stateAbbr());
+                        break;
                     case POSTALCODE:
                         b.withString(field.getName(), fake.address().zipCode());
                         break;
                     case STREETADDRESS:
                         b.withString(field.getName(), fake.address().streetAddress());
+                        break;
+                    case FULLADDRESS:
+                        b.withString(field.getName(), fake.address().fullAddress());
                         break;
                     case STREETNUMBER:
                         b.withString(field.getName(), fake.address().streetAddressNumber());
@@ -107,29 +116,14 @@ public class DataGeneratorComponentService {
                     case COMPANYURL:
                         b.withString(field.getName(), fake.company().url());
                         break;
+                    case UUID:
+                        b.withString(field.getName(), fake.internet().uuid());
+                        break;
                     case ISBN10:
                         b.withString(field.getName(), fake.code().isbn10());
                         break;
                     case ISBN13:
                         b.withString(field.getName(), fake.code().isbn13());
-                        break;
-                    case IMEI:
-                        b.withString(field.getName(), fake.code().imei());
-                        break;
-                    case ASIN:
-                        b.withString(field.getName(), fake.code().asin());
-                        break;
-                    case EAN8:
-                        b.withString(field.getName(), fake.code().ean8());
-                        break;
-                    case EAN13:
-                        b.withString(field.getName(), fake.code().ean13());
-                        break;
-                    case GTIN8:
-                        b.withString(field.getName(), fake.code().gtin8());
-                        break;
-                    case GTIN13:
-                        b.withString(field.getName(), fake.code().gtin13());
                         break;
                     case FREETEXT:
                         b.withString(field.getName(), field.getFreetext());
