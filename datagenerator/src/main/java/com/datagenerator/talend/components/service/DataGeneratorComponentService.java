@@ -16,7 +16,8 @@ import java.util.regex.Pattern;
 public class DataGeneratorComponentService {
 
     public Record.Builder addFieldsToRecord(Integer iterator,
-                                            Faker fake, List<FieldConfiguration> fields,
+                                            Faker fake, HashMap<String, WeightedList<String>> weightedlists,
+                                            List<FieldConfiguration> fields,
                                             ZoneId id, Record.Builder b) {
 
         LocalDateTime now = LocalDateTime.now();
@@ -134,6 +135,9 @@ public class DataGeneratorComponentService {
                         break;
                     case RANDOMSTRING:
                         b.withString(field.getName(), fake.regexify("(\\w){" + field.getMin().toString() + "," + field.getMax().toString() + "}"));
+                        break;
+                    case RANDOMWITHINLIST:
+                        b.withString(field.getName(), weightedlists.get(field.getName()).getRandom());
                         break;
                     case RANDOMBOOLEAN:
                         b.withBoolean(field.getName(), fake.bool().bool());

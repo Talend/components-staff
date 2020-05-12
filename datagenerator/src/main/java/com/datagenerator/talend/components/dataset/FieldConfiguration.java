@@ -13,11 +13,12 @@ import org.talend.sdk.component.api.meta.Documentation;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import lombok.Data;
 
 @Data
-@OptionsOrder({ "name", "type", "regex", "length", "min", "max", "startTime", "endTime", "increment", "freetext"})
+@OptionsOrder({ "name", "type", "regex", "length", "min", "max", "startTime", "endTime", "increment", "freetext", "randomwithinlist"})
 public class FieldConfiguration implements Serializable {
 
     @Option
@@ -84,4 +85,10 @@ public class FieldConfiguration implements Serializable {
     @Documentation("Text")
     @ActiveIf(target = "type", value = {"FREETEXT"})
     private String freetext = "";
+
+    @Option
+    @TextArea
+    @Documentation("List")
+    @ActiveIf(target = "type", value = {"RANDOMWITHINLIST"})
+    private List<ListConfiguration> randomwithinlist;
 }
