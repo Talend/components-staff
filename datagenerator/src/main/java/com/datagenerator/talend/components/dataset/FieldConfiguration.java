@@ -87,7 +87,6 @@ public class FieldConfiguration implements Serializable {
     private String freetext = "";
 
     @Option
-    @TextArea
     @Documentation("List")
     @ActiveIf(target = "type", value = {"RANDOMWITHINLIST"})
     private List<ListConfiguration> randomwithinlist;

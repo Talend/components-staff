@@ -12,11 +12,12 @@ import org.talend.sdk.component.api.configuration.ui.OptionsOrder;
 import org.talend.sdk.component.api.configuration.ui.widget.TextArea;
 import org.talend.sdk.component.api.meta.Documentation;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
 @OptionsOrder({ "item", "weight"})
-public class ListConfiguration {
+public class ListConfiguration implements Serializable {
 
     @Option
     @Required
