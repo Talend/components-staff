@@ -23,3 +23,7 @@ ssh as JDBC connectivity into ThoughtSpot can be extremely slow.
 
 ## [Data Generator](https://github.com/Talend/datagenerator-component)
 The Data Generator component allows the user to bgenerate random and mock data for tests or demo purposes. The java-faker library is used underneath.
+
+## [Tableau](https://github.com/Talend/tableau-component)
+
+## [Talend Cloud Metadata](https://github.com/Talend/metadata-component) :warning: WIP 
